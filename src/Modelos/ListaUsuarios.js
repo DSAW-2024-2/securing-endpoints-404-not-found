@@ -1,3 +1,5 @@
+//LISTA DE PEDIDOS, SE ADJUNTA EL MODELO QUE DEBERIA SEGUIR
+
 /*
 {
   "id": "Identificador único",

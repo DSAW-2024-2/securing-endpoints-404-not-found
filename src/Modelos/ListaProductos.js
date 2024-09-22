@@ -1,3 +1,5 @@
+//LISTA DE PRODUCTOS, SE ADJUNTA EL MODELO QUE DEBERIA SEGUIR
+
 /*
 {
   "id": "Identificador único",
