@@ -24,12 +24,19 @@ router.post("/users", (req, res) => {
   }
 });
 
-/*
-FALTA ESTA FUNCION!!!! 
-FALTA ESTA FUNCION!!!!
-*/
-
-router.get("/users/:id", (req, res) => {});
+router.get("/users/:id", (req, res) => {
+  try {
+    const id = req.params.id;
+    for (let user of lista) {
+      if (user.id == id) {
+        res.send(user);
+      }
+    }
+    res.send("Usuario no encontrado");
+  } catch (e) {
+    res.status(500).send("Error interno del servidor");
+  }
+});
 
 router.put("/users/:id", (req, res) => {
   try {
@@ -49,12 +56,19 @@ router.put("/users/:id", (req, res) => {
   }
 });
 
-/*
-FALTA ESTA FUNCION!!!! 
-FALTA ESTA FUNCION!!!!
-*/
+router.delete("/users/:id", (req, res) => {
+  try {
+    const id = req.params.id;
+    const index = lista.findIndex((order) => order.id === id);
 
-router.delete("/users/:id", (req, res) => {});
+    if (index !== -1) {
+      lista.splice(index, 1);
+      res.send(lista);
+    }
+  } catch (e) {
+    res.status(500).send("Error eliminando el usuario");
+  }
+});
 
 //Funciones
 //VERIFICAR QUE LA ENTRADA SEA APROPIADA AL JSON ESPERADO
