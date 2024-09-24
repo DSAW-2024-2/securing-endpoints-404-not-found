@@ -49,7 +49,7 @@ router.post("/orders", (req, res) => {
       lista.push(pedido);
       res.send(lista);
     } else {
-      res.status(400).send({ message: "Error al crear el pedido" });
+      res.status(400).send("Error al crear el pedido");
     }
   } catch (e) {
     res.status(500).send("Error interno del servidor");

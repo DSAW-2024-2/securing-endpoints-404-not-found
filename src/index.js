@@ -17,9 +17,7 @@ app.use(require("./Routes/productos.js"));
 
 // Capturar rutas no definidas (404)
 app.use((req, res, next) => {
-  res.status(404).json({
-    message: "Ruta no encontrada",
-  });
+  res.status(404).json("Ruta no encontrada");
 });
 
 //3. INICIAR LA API
