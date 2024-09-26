@@ -1,6 +1,7 @@
 //AQUI SE HACEN TODOS LOS AJUSTES DE LA API EN GENERAL
 
 //1. IMPORTAR DEPENDENCIAS
+require("dotenv").config();
 const express = require("express");
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 //USANDO ROUTES PARA SEPARAR EL CODIGO EN MODULOS
+//RUTA DE LOGIN
+app.use(require("./Routes/login.js"));
 app.use(require("./Routes/usuarios.js"));
 app.use(require("./Routes/pedidos.js"));
 app.use(require("./Routes/productos.js"));
