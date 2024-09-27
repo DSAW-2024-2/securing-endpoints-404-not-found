@@ -15,6 +15,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, httpOnly: true },
+  })
+);
+
 //USANDO ROUTES PARA SEPARAR EL CODIGO EN MODULOS
 //RUTA DE LOGIN
 app.use(require("./Routes/login.js"));
