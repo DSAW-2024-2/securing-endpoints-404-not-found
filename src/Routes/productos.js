@@ -2,12 +2,13 @@ const { Router } = require("express");
 const router = Router();
 
 let lista = require("../Modelos/ListaProductos");
+let autenticar = require("../middleware/verificarCookie");
 
-router.get("/products", (req, res) => {
+router.get("/products", autenticar, (req, res) => {
   res.send(lista);
 });
 
-router.post("/products", (req, res) => {
+router.post("/products", autenticar, (req, res) => {
   try {
     const products = req.body;
 
@@ -21,7 +22,7 @@ router.post("/products", (req, res) => {
   }
 });
 
-router.get("/products/:id", (req, res) => {
+router.get("/products/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     for (let product of lista) {
@@ -35,7 +36,7 @@ router.get("/products/:id", (req, res) => {
   }
 });
 
-router.put("/products/:id", (req, res) => {
+router.put("/products/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     for (let product of products) {
@@ -49,7 +50,7 @@ router.put("/products/:id", (req, res) => {
   }
 });
 
-router.delete("/products/:id", (req, res) => {
+router.delete("/products/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     const index = lista.findIndex((order) => order.id === id);

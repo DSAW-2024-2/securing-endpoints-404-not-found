@@ -9,12 +9,14 @@ let lista = require("../Modelos/ListaPedidos");
 let usuarios = require("../Modelos/ListaUsuarios");
 let productos = require("../Modelos/ListaProductos");
 
+let autenticar = require("../middleware/verificarCookie");
+
 //2. END-POINTS
-router.get("/orders", (req, res) => {
+router.get("/orders", autenticar, (req, res) => {
   res.send(lista);
 });
 
-router.post("/orders", (req, res) => {
+router.post("/orders", autenticar, (req, res) => {
   //VERIFICAR QUE EL BODY QUE SE MANDA SEA UN OBJETO QUE CUMPLA CON ESAS RESTRICCIONES
   function revisarEntrada(pedido) {
     if (
@@ -56,7 +58,7 @@ router.post("/orders", (req, res) => {
   }
 });
 
-router.get("/orders/:id", (req, res) => {
+router.get("/orders/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     for (let pedido of lista) {

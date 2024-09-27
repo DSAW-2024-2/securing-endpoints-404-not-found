@@ -5,12 +5,14 @@ const router = Router();
 //LISTAS NECESARIAS
 let lista = require("../Modelos/ListaUsuarios");
 
+let autenticar = require("../middleware/verificarCookie");
+
 //2. END-POINTS
-router.get("/users", (req, res) => {
+router.get("/users", autenticar, (req, res) => {
   res.send(lista);
 });
 
-router.post("/users", (req, res) => {
+router.post("/users", autenticar, (req, res) => {
   try {
     const usuario = req.body;
 
@@ -24,7 +26,7 @@ router.post("/users", (req, res) => {
   }
 });
 
-router.get("/users/:id", (req, res) => {
+router.get("/users/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     for (let user of lista) {
@@ -38,7 +40,7 @@ router.get("/users/:id", (req, res) => {
   }
 });
 
-router.put("/users/:id", (req, res) => {
+router.put("/users/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     const usuario = req.body;
@@ -56,7 +58,7 @@ router.put("/users/:id", (req, res) => {
   }
 });
 
-router.delete("/users/:id", (req, res) => {
+router.delete("/users/:id", autenticar, (req, res) => {
   try {
     const id = req.params.id;
     const index = lista.findIndex((order) => order.id === id);
